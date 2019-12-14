@@ -57,9 +57,9 @@ Tree* Tree::balance(Tree* p){                       // балансировка узла p
 }
 
 
-Tree* Tree::insert(Tree* p, int k){                 // вставка ключа k в дерево с корнем p
+Tree* Tree::insert(Tree* p, string k){                 // вставка ключа k в дерево с корнем p
     if( !p ) return new Tree(k);                    // если дерево пустое создадим его
-    if( k<p->key )                                  //если ключ больше вершины, вызомем это рекурсивно от левого сына
+    if( k<p->word )                                  //если ключ больше вершины, вызомем это рекурсивно от левого сына
         p->left = insert(p->left,k);
     else
         p->right = insert(p->right,k);              // если ключ меньше вершины, вызовем рекурсию от правго сына
@@ -80,13 +80,13 @@ Tree* Tree::rm_min(Tree *p){                        // удаление узла с минимальн
 }
 
 
-Tree* Tree::remove(Tree* p, int k){                 // удаление ключа k из дерева p
+Tree* Tree::remove(Tree* p, string k){                 // удаление ключа k из дерева p
     if( !p ){
         return 0;                                   // если дерево пустое, уходим
     }
-    if( k < p->key ) {                              //если элемент меньше вершины идем в левого сына
+    if( k < p->word ) {                              //если элемент меньше вершины идем в левого сына
         p->left = remove(p->left, k);
-    } else if( k > p->key ) {
+    } else if( k > p->word ) {
         p->right = remove(p->right, k);             // если элемент больше вершины, идем в правого сына
     } else {                                        //  мы пришли в вершину, которую надо удалить
         Tree* q = p->left;
@@ -110,7 +110,7 @@ void Tree::print_tree(Tree * p, int level) {
         for(int i = 0;i< level;i++) {
             cout << "   ";
         }
-        cout << p->key << endl;
+        cout << p->word << endl;
         print_tree(p->left, level + 1);
     }
 }
