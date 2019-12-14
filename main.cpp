@@ -2,8 +2,8 @@
 #include <fstream>
 #include <regex>
 #include <iomanip>
+#include <string.h>
 #include "tree.h"
-#include "NodeData.h"
 using namespace std;
 
 /* Задание
@@ -28,10 +28,10 @@ using namespace std;
  упорядоченного по значению слова. Список номеров строк храниться в отдельном  связанном списке,
  указатель на который хранит соответствующий узел дерева.
 
-    Построить дерево указанного вида
-    Найти слово, встретившееся в тексте в максимальном числе строк
-    Вычислить значение дерева
-    Распечатать формулу дерева
+    +Построить дерево указанного вида
+    +Найти слово, встретившееся в тексте в максимальном числе строк
+    ?Вычислить значение дерева
+    +Распечатать формулу дерева
  */
 
 
@@ -44,17 +44,32 @@ using namespace std;
  */
 
 int main() {
-    /*
+    Tree* tree = new Tree("root", 1);
+
     string temp_s; // сюда будем класть считанные строки
     ifstream file("D:\\Torrent\\data.txt");
+    int row_num = 0;
     while(getline(file, temp_s)){
-//        cout << temp_s << endl;
-//        temp_s += "+";
+        row_num++;
+
+        char * pch = strtok (temp_s," ,.-");
+        while (pch != NULL){
+            std::cout << pch  << "n";
+            pch = strtok (NULL, " ,.-");
+        }
+        tree = tree->insert(tree, t_word, row_num);
     }
 
     file.close();
 
-    */
+    tree->print_tree(tree, 0);
+    cout << "Completed!\n"<< endl;
+
+    Tree* max_answer = tree->get_max();
+    cout << max_answer->get_word() << endl;
+
+
+
 //    temp_s = "Project This project covers the need of a group of IT Security Researchers to have a single ";
 //    cout << temp_s << endl;
 //    if (regex_match(temp_s, sm, regex("(.*)[\\s\\,\\?\\!\\.]"))) {
@@ -88,27 +103,24 @@ int main() {
 //    (.*)[ ,\?\.]
 
 
+/*
+    Tree* tree = new Tree("root", 1);
+    tree = tree->insert(tree, "pidor", 1);
+    tree = tree->insert(tree, "sosat", 2);
+    tree = tree->insert(tree, "sosat", 2);
+    tree = tree->insert(tree, "sosat", 3);
 
-    Tree* tree = new Tree("root");
-    tree->print_tree(tree, 0);
-    cout << "-----------\n";
+    tree = tree->insert(tree, "lokh", 3);
+    tree = tree->insert(tree, "pidor", 3);
+    tree = tree->insert(tree, "derevo", 4);
 
-    tree = tree->insert(tree, "pidor");
-    tree->print_tree(tree, 0);
-    cout << "-----------\n";
-
-    tree = tree->insert(tree, "sosat");
-    tree->print_tree(tree, 0);
-    cout << "-----------\n";
-
-    tree = tree->insert(tree, "lokh");
-    tree->print_tree(tree, 0);
-    cout << "-----------\n";
-
-    tree = tree->insert(tree, "derevo");
     tree->print_tree(tree, 0);
     cout << "Completed!"<< endl;
 
 
+//    cout << tree->get_max()->get_word() << endl;
+    Tree* max_answer = tree->get_max();
+    cout << max_answer->get_word() << endl;
+*/
     return 0;
 }

@@ -7,31 +7,40 @@ using namespace std;
 
 class Tree {
     string word;                                // номер вершины
-    NodeData* data;
+    NodeData* rows;
     int height;                                 // высота поддерева
     Tree *left;                                 // cсылка на левого сына
     Tree *right;                                // ссылка на правого сына
 
 public:
-
-    Tree(string k) {                                // конструктор пустой вершины без листьев
-        word = k;
+//    Коструткор
+    Tree(string str_value, int row_num) {      // конструктор пустой вершины без листьев
+        word = str_value;
         left = right = 0;
         height = 1;
-//        data = new NodeData();
+        rows = new NodeData(row_num);
     }
 
-    int calc_height(Tree *p);              // получение высоты вершины
-    int bfactor(Tree *p);                        // разность высот между сыновьями
-    void fix_height(Tree *p);                    // обновим высоту, если сбалансированность нарушена
-    Tree *rotate_right(Tree *p);                // правый поворот вокруг p
-    Tree *rotate_left(Tree *q);                  // левый поворот вокруг q
-    Tree *balance(Tree *p);                      // балансировка узла p
-    Tree *insert(Tree *p, string k);               // вставка ключа k в дерево с корнем p
-    Tree *find_min(Tree *p);                     // поиск узла с минимальным ключом в дереве p
-    Tree *rm_min(Tree *p);                      // удаление узла с минимальным ключом из дерева p
-    Tree *remove(Tree *p, string k);                // удаление ключа k из дерева p
-    void print_tree(Tree *p, int level);
+    Tree (const Tree &object) {
+        word = object.word;
+        rows = object.rows;
+        left = object.left;
+        right = object.right;
+        height = object.height;
+    }
+
+    int calc_height(Tree *p);                           // получение высоты вершины
+    int bfactor(Tree *p);                               // разность высот между сыновьями
+    void fix_height(Tree *p);                           // обновим высоту, если сбалансированность нарушена
+    Tree *rotate_right(Tree *p);                        // правый поворот вокруг p
+    Tree *rotate_left(Tree *q);                         // левый поворот вокруг q
+    Tree *balance(Tree *p);                             // балансировка узла p
+    Tree *insert(Tree *p, string str_val, int row_num); // вставка ключа k в дерево с корнем p
+    void print_tree(Tree *p, int level);                // вывод дерева на экран
+    void search_max(Tree* p, Tree*& p_max, int*& max);
+    Tree* get_max();
+    string get_word(){ return this->word; }
+
 };
 
 #endif //LAB_4_TREE_H

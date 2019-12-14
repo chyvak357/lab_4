@@ -19,7 +19,17 @@ void NodeData::append(int str_value){
 void NodeData::get_all() {
     NodeData* temp = this;
     while (temp){
-        std::cout << temp->doc_str << ", ";
+        std::cout << temp->doc_str << " ";
         temp = temp->next;
     }
+}
+
+int NodeData::get_sum() {
+    int s = 0;
+    NodeData* temp = this;
+    while (temp){
+        s++;
+        temp = temp->next;
+    }
+    return s;
 }
