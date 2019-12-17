@@ -57,8 +57,8 @@ Tree* Tree::balance(Tree* p){                       // балансировка узла p
 }
 
 
-Tree* Tree::insert(Tree* p, string str_val, int row_num){          // вставка ключа k в дерево с корнем p
-    if( !p ) return new Tree(str_val, row_num);                    // если дерево пустое создадим его
+Tree* Tree::insert(Tree* p, string str_val, int row_num){         // вставка ключа k в дерево с корнем p
+    if( !p ) return new Tree(str_val, row_num);                   // если дерево пустое создадим его
     if( str_val < p->word ) {                                     //если ключ больше вершины, вызомем это рекурсивно от левого сына
         p->left = insert(p->left, str_val, row_num);
     } else if ( str_val > p->word ) {
@@ -70,43 +70,6 @@ Tree* Tree::insert(Tree* p, string str_val, int row_num){          // вставка кл
     return balance(p);                                              // отбалансируем вершину
 }
 
-/*
-Tree* Tree::find_min(Tree *p){                      // поиск узла с минимальным ключом в дереве p
-    return p->left? find_min(p->left):p;            //если есть левый сын, идем в него иначе ответ в этой вершине
-}
-*/
-/*
-Tree* Tree::rm_min(Tree *p){                        // удаление узла с минимальным ключом из дерева p
-    if( p->left==0 )                                // если нет левого сына удалим эту вершину
-        return p->right;
-    p->left = rm_min(p->left);                      // иначе идем в левого сына
-    return balance(p);                              //балансируем дерево
-}
-*/
-/*
-Tree* Tree::remove(Tree* p, string k){                 // удаление ключа k из дерева p
-    if( !p ){
-        return 0;                                   // если дерево пустое, уходим
-    }
-    if( k < p->word ) {                              //если элемент меньше вершины идем в левого сына
-        p->left = remove(p->left, k);
-    } else if( k > p->word ) {
-        p->right = remove(p->right, k);             // если элемент больше вершины, идем в правого сына
-    } else {                                        //  мы пришли в вершину, которую надо удалить
-        Tree* q = p->left;
-        Tree* r = p->right;
-        delete p;                                   //удалим физически эту вершину
-        if( !r ) {
-            return q;
-        }
-        Tree* min = find_min(r);
-        min->right = rm_min(r);                     //правый сын минимальной вершины - это правое поддерево удаляемой без минимума
-        min->left = q;                              // левый сын минимальной вершины - левый сын удаляемой
-        return balance(min);                        // балансируем меньшую вершину
-    }
-    return balance(p);                              // мы ничего не нашли, балансируем дерево
-}
-*/
 
 void Tree::print_tree(Tree* p, int level) {
     if(p){
@@ -115,7 +78,6 @@ void Tree::print_tree(Tree* p, int level) {
             cout << "   ";
         }
         cout << p->word <<":" << p->rows->get_sum();
-//        p->rows->get_all();
         cout << endl;
         print_tree(p->left, level + 1);
     }

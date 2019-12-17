@@ -16,13 +16,6 @@ void NodeData::append(int str_value){
     temp->next = new NodeData(str_value);
 }
 
-void NodeData::get_all() {
-    NodeData* temp = this;
-    while (temp){
-        std::cout << temp->doc_str << " ";
-        temp = temp->next;
-    }
-}
 
 int NodeData::get_sum() {
     int s = 0;

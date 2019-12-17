@@ -14,7 +14,6 @@ public:
     }
 
     void append(int str_value);
-    void get_all();
     int get_sum();
 };
 

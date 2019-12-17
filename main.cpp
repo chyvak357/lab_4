@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 
-    Tree* tree = new Tree("root", 1);
+    Tree* tree;
     regex re("(\\w*)[^\\W0-9]");
 
     string temp_s;

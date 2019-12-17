@@ -6,11 +6,11 @@
 using namespace std;
 
 class Tree {
-    string word;                                // номер вершины
+    string word;
     NodeData* rows;
-    int height;                                 // высота поддерева
-    Tree *left;                                 // cсылка на левого сына
-    Tree *right;                                // ссылка на правого сына
+    int height;
+    Tree *left;
+    Tree *right;
 
 public:
 //    Коструткор
@@ -30,16 +30,16 @@ public:
     }
 
     int calc_height(Tree *p);                           // получение высоты вершины
-    int bfactor(Tree *p);                               // разность высот между сыновьями
-    void fix_height(Tree *p);                           // обновим высоту, если сбалансированность нарушена
-    Tree *rotate_right(Tree *p);                        // правый поворот вокруг p
-    Tree *rotate_left(Tree *q);                         // левый поворот вокруг q
-    Tree *balance(Tree *p);                             // балансировка узла p
+    int bfactor(Tree *p);                               // разность высот между ветвями
+    void fix_height(Tree *p);                           // обновить высоту, если сбалансированность нарушена
+    Tree *rotate_right(Tree *p);                        // правый поворот
+    Tree *rotate_left(Tree *q);                         // левый поворот
+    Tree *balance(Tree *p);                             // балансировка узла
     Tree *insert(Tree *p, string str_val, int row_num); // вставка ключа k в дерево с корнем p
     void print_tree(Tree *p, int level);                // вывод дерева на экран
-    void search_max(Tree* p, Tree*& p_max, int*& max);
-    Tree* get_max();
-    string get_word(){ return this->word; }
+    void search_max(Tree* p, Tree*& p_max, int*& max);  // Поиск слова с максимальным кол-м вхождений
+    Tree* get_max();                                    // Получение указателя на максимальное слово
+    string get_word(){ return this->word; }             // Получение значение слова узла
 
 };
 
