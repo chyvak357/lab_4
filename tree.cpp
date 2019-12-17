@@ -129,8 +129,6 @@ Tree* Tree::get_max(){
 }
 void Tree::search_max(Tree* p, Tree*& p_max, int*& max) {
     if(p){
-        cout << "-----\n";
-        cout << p->get_word() << ":" << p_max->get_word() << ", " << *max << endl;
         if (p->rows->get_sum() > *max){
             *max = p->rows->get_sum();
             p_max = p;
